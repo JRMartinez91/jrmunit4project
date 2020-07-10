@@ -5,8 +5,8 @@ import CreateGuest from './components/CreateGuest'
 import CreateBook from './components/CreateBook'
 import BookByID from './components/BookByID';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import logo from './logo.svg';
 import './App.css';
+import GuestByID from './components/GuestByID';
 
 class App extends Component {
   render(){
@@ -25,6 +25,7 @@ class App extends Component {
       <Switch>
         <Route path="/books/:id" component={BookByID}/>
         <Route path="/books" component={BookList}/>
+        <Route path="/guests/:id" component={GuestByID}/>
         <Route path="/guests" component={GuestList}/>
       </Switch>
       </BrowserRouter>
