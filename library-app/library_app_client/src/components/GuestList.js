@@ -22,7 +22,7 @@ class GuestList extends Component{
                 <h2>Guests</h2>
                 {this.state.guests.map( guest => {
                     return(
-                        <div className="guestbox">
+                        <div className="guestbox" key={guest.id}>
                             <h3>{guest.name}</h3>
                             <p>{guest.address}</p>
                         </div>

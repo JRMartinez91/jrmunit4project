@@ -23,7 +23,7 @@ class BookList extends Component{
                 <h2>Library Catalogue</h2>
                 {this.state.books.map( book => {
                     return(
-                        <div className="bookwrapper" id={book.id}>
+                        <div className="bookwrapper" key={book.id}>
                             <div className="bookbox">
                                 <h3>{book.title}</h3>
                                 <h4>By {book.author}</h4>
