@@ -73,7 +73,7 @@ class NewCheckout extends Component{
     render(){
         return(
             <>
-            <h1>Hello World: New Checkout</h1>
+            <h1>Checkout Counter</h1>
             <h2>Checking Out: {this.state.book.title} by {this.state.book.author}</h2>
             <form onSubmit={this.handleSubmit}>
                 <label htmlFor="guests">Who is checking out the book?</label>

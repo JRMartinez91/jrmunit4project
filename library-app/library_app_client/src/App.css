@@ -1,3 +1,7 @@
+body{
+  background-color:gray;
+}
+
 .bigbox{
   display: flex;
   justify-content: space-evenly;
@@ -21,6 +25,45 @@
   transition-duration: 0.25s;
 }
 
+.big-border{
+  border: 1px solid black;
+  background-color:white;
+  padding: 30px;
+  width: 80%;
+  margin: 30px auto;
+}
+
+nav{
+  display:flex;
+  justify-content: space-evenly;
+  border: 2px solid darkgray;
+  padding: 10px 0
+}
+
+nav a{
+  background-color: darkolivegreen;
+  border: 1px solid rgb(38, 49, 19);
+  color:white;
+  padding: 5px;
+}
+
+h1{
+  text-align:center;
+}
+
+form{
+  display:flex;
+  flex-direction: column;
+  border: 1px solid gray;
+  background-color: darkgray;
+  padding: 10px;
+}
+
+form .submit-button{
+  width: 25%;
+  margin-top: 20px;
+  align-self: center;
+}
 
 /* .App {
   text-align: center;

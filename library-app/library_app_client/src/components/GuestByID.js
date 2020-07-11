@@ -88,6 +88,16 @@ class GuestByID extends Component {
         return bookList;
     }
 
+    deleteGuest(guest){
+        let answer = prompt(`Are you sure you want to delete ${guest.name}'s account? Y/N`)
+        if(answer=="y"||answer=="Y"){
+            fetch(`http://localhost:3000/guests/${guest.id}`,{
+                method: 'DELETE'
+            })
+            this.setState({redirect: true})
+        }
+    }
+
     render(){
         const myBooks = this.state.guest.books;
         // console.log(myBooks)
@@ -95,7 +105,7 @@ class GuestByID extends Component {
         return(
             <>
             {/* guest data */}
-            <h1>Hello world: Guest by ID</h1>
+            <h1>Guest Information</h1>
             <h2>{this.state.guest.name}</h2>
             <h2>{this.state.guest.address}</h2>
             {/* books and checkouts */}
@@ -109,8 +119,9 @@ class GuestByID extends Component {
                 <input type='text' value={this.state.editedGuest.name} onChange={this.handleChange} id='name'/>
                 <label htmlFor='address'>Address</label>
                 <input type='text' value={this.state.editedGuest.address} onChange={this.handleChange} id='address'/>
-                <input type='submit'/>
+                <input className="submit-button" type='submit'/>
             </form>
+            <button onClick={()=>{this.deleteGuest(this.state.guest)}}>Delete This Account</button>
             </>
         )
     }

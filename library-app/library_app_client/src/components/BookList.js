@@ -21,8 +21,7 @@ class BookList extends Component{
         if(answer=="y"||answer=="Y"){
             fetch(`http://localhost:3000/books/${book.id}`,{
                 method: 'DELETE'
-            }).then(response => {return response.json()})
-            .then(res => console.log(res))
+            })
         }
     }
 

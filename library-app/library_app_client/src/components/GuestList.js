@@ -16,6 +16,16 @@ class GuestList extends Component{
         this.getGuests();
     }
 
+    deleteGuest(guest){
+        let answer = prompt(`Are you sure you want to delete ${guest.name}? Y/N`)
+        if(answer=="y"||answer=="Y"){
+            fetch(`http://localhost:3000/guests/${guest.id}`,{
+                method: 'DELETE'
+            })
+        }
+        this.getGuests()
+    }
+
     render(){
         return(
             <div className="listbox">
@@ -25,6 +35,8 @@ class GuestList extends Component{
                         <div className="guestbox" key={guest.id}>
                             <h3>{guest.name}</h3>
                             <p>{guest.address}</p>
+                            <a href={"/guests/"+guest.id}>View/Edit</a>
+                                <button onClick={()=>{this.deleteGuest(guest)}}>Delete</button>
                         </div>
                     )
                 })}

@@ -40,7 +40,7 @@ class CreateGuest extends Component{
                 <input type='text' value={this.state.name} onChange={this.handleChange} id='name'/>
                 <label htmlFor='address'>Address</label>
                 <input type='text' value={this.state.address} onChange={this.handleChange} id='address'/>
-                <input type='submit'/>
+                <input className="submit-button" type='submit'/>
             </form>
             </>
         )

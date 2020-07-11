@@ -100,11 +100,14 @@ class BookByID extends Component {
                 method: 'DELETE'
             })
             this.setState({redirect: true})
+            this.forceUpdate()
         }
     }
 
-    renderRedirect = () => {
+    renderRedirect(){
+
         if (this.state.redirect) {
+        console.log("activated")
           return <Redirect to='/books' />
         }
       }
@@ -113,7 +116,7 @@ class BookByID extends Component {
         const book = this.state.book
         return(
             <>
-                <h1>Hello world: book by ID</h1>
+                <h1>Book Information</h1>
                 <div className="bookbox">
                     <h3>{book.title}</h3>
                     <h4>By {book.author}</h4>
@@ -125,6 +128,7 @@ class BookByID extends Component {
                 <ul>
                 {this.parseGuests()}
                 </ul>
+                <a href={"/newcheckout/"+book.id}>Check this book out?</a>
                 <h2>Edit Book Data:</h2>
                     <form onSubmit={this.handleSubmit}>
                     <label htmlFor='title'>Title</label>
@@ -137,10 +141,10 @@ class BookByID extends Component {
                     <input type='text' value={this.state.editedBook.pubdate} onChange={this.handleChange} id='pubdate'/>
                     <label htmlFor='isbn'>ISBN Number</label>
                     <input type='text' value={this.state.editedBook.isbn} onChange={this.handleChange} id='isbn'/>
-                    <input type='submit'/>
+                    <input className="submit-button" type='submit'/>
                 </form>
                 <button onClick={()=>{this.deleteBook(book)}}>Delete This Book</button>
-                {this.renderRedirect}
+                {this.renderRedirect()}
             </>
         )
     }

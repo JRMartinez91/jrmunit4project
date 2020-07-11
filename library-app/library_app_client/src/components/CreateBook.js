@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import { Redirect } from 'react-router-dom';
 
 class CreateBook extends Component{
     constructor(props) {
@@ -8,10 +9,13 @@ class CreateBook extends Component{
             author:'',
             genre:'',
             pubdate:'',
-            isbn:''
+            isbn:'',
+            redirect:false,
+            redirectID:''
         }
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.renderRedirect = this.renderRedirect.bind(this);
 	}
 
     handleChange(event){
@@ -37,8 +41,18 @@ class CreateBook extends Component{
         }).then(createdBook => {
             return createdBook.json();
         }).then(jsonBook => {
+            this.setState({redirectID: jsonBook.id})
             console.log(jsonBook);
         }).catch(error=> console.log(error));
+        this.setState({redirect: true})
+    }
+
+    renderRedirect(){
+        if(this.state.redirect){
+            return(
+                <Redirect to={'/books/'+this.state.redirectID}/>
+            )
+        }
     }
 
     render(){
@@ -56,8 +70,9 @@ class CreateBook extends Component{
                 <input type='text' value={this.state.pubdate} onChange={this.handleChange} id='pubdate'/>
                 <label htmlFor='isbn'>ISBN Number</label>
                 <input type='text' value={this.state.isbn} onChange={this.handleChange} id='isbn'/>
-                <input type='submit'/>
+                <input className="submit-button" type='submit'/>
             </form>
+            {this.renderRedirect()}
             </>
         )
     }
