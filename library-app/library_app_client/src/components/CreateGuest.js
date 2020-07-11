@@ -17,7 +17,7 @@ class CreateGuest extends Component{
 
     handleSubmit(event){
         event.preventDefault()
-        fetch('http://localhost:3000/guests',{
+        fetch('https://jamesrm-rails-library.herokuapp.com/guests',{
             body: JSON.stringify({name: this.state.name,address: this.state.address}),
             method: 'POST',
             headers:{

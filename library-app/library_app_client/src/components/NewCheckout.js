@@ -1,5 +1,4 @@
 import React,{Component} from 'react'
-import { NavLink } from 'react-router-dom';
 
 class NewCheckout extends Component{
     constructor(props){
@@ -18,14 +17,14 @@ class NewCheckout extends Component{
     }
 
     getGuests(){
-        fetch('http://localhost:3000/guests')
+        fetch('https://jamesrm-rails-library.herokuapp.com/guests')
         .then(response=>response.json())
         .then(json => this.setState({guests: json}))
     .catch(error => console.error(error))
     }
 
     getBook(){
-        fetch(`http://localhost:3000/books/${this.props.match.params.id}`)
+        fetch(`https://jamesrm-rails-library.herokuapp.com/books/${this.props.match.params.id}`)
         .then(response=>response.json())
         .then(json => this.setState({book: json}))
     .catch(error => console.error(error))
@@ -48,7 +47,7 @@ class NewCheckout extends Component{
         if(!myForm.guests || !myForm.start || !myForm.due){
             alert("Please fill out all form areas.")
         } else {
-            fetch('http://localhost:3000/checkouts',{
+            fetch('https://jamesrm-rails-library.herokuapp.com/checkouts',{
                 body: JSON.stringify({
                     book_id: this.props.match.params.id,
                     guest_id: this.state.checkoutForm.guests,

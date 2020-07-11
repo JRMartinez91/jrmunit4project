@@ -15,7 +15,7 @@ class BookByID extends Component {
     }
 
     getBook(){
-        fetch(`http://localhost:3000/books/${this.props.match.params.id}`)
+        fetch(`https://jamesrm-rails-library.herokuapp.com/books/${this.props.match.params.id}`)
         .then(response=>response.json())
         .then(json => this.setState({book: json,editedBook: json}))
     .catch(error => console.error(error))
@@ -26,7 +26,7 @@ class BookByID extends Component {
     }
 
     handleSubmit(event){
-        fetch(`http://localhost:3000/books/${this.props.match.params.id}`,{
+        fetch(`https://jamesrm-rails-library.herokuapp.com/books/${this.props.match.params.id}`,{
             body: JSON.stringify({
                 title: this.state.editedBook.title,
                 author: this.state.editedBook.author,
@@ -53,7 +53,7 @@ class BookByID extends Component {
     }
 
     matchID(checkout,id){
-        return id == checkout.guest_id
+        return id === checkout.guest_id
     }
     
     getCheckoutFromGuest(guest_id){
@@ -96,7 +96,7 @@ class BookByID extends Component {
     deleteBook(book){
         let answer = prompt(`Are you sure you want to delete ${book.title}? Y/N`)
         if(answer=="y"||answer=="Y"){
-            fetch(`http://localhost:3000/books/${book.id}`,{
+            fetch(`https://jamesrm-rails-library.herokuapp.com/books/${book.id}`,{
                 method: 'DELETE'
             })
             this.setState({redirect: true})

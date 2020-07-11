@@ -24,7 +24,7 @@ class CreateBook extends Component{
 
     handleSubmit(event){
         event.preventDefault()
-        fetch('http://localhost:3000/books',{
+        fetch('https://jamesrm-rails-library.herokuapp.com/books',{
             body: JSON.stringify({
                 title: this.state.title,
                 author: this.state.author,

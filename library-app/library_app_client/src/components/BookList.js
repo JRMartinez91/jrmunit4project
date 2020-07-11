@@ -6,7 +6,7 @@ class BookList extends Component{
     }
 
     getBooks(){
-        fetch('http://localhost:3000/books')
+        fetch('https://jamesrm-rails-library.herokuapp.com/books')
         .then(response=>response.json())
         .then(json => this.setState({books: json}))
     .catch(error => console.error(error))
@@ -19,7 +19,7 @@ class BookList extends Component{
     deleteBook(book){
         let answer = prompt(`Are you sure you want to delete ${book.title}? Y/N`)
         if(answer=="y"||answer=="Y"){
-            fetch(`http://localhost:3000/books/${book.id}`,{
+            fetch(`https://jamesrm-rails-library.herokuapp.com/books/${book.id}`,{
                 method: 'DELETE'
             })
         }

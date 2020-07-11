@@ -6,7 +6,7 @@ class GuestList extends Component{
     }
 
     getGuests(){
-        fetch('http://localhost:3000/guests')
+        fetch('https://jamesrm-rails-library.herokuapp.com/guests')
         .then(response=>response.json())
         .then(json => this.setState({guests: json}))
     .catch(error => console.error(error))
@@ -19,7 +19,7 @@ class GuestList extends Component{
     deleteGuest(guest){
         let answer = prompt(`Are you sure you want to delete ${guest.name}? Y/N`)
         if(answer=="y"||answer=="Y"){
-            fetch(`http://localhost:3000/guests/${guest.id}`,{
+            fetch(`https://jamesrm-rails-library.herokuapp.com/guests/${guest.id}`,{
                 method: 'DELETE'
             })
         }
