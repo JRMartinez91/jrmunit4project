@@ -1,11 +1,13 @@
 import React, {Component} from 'react'
+import {Redirect} from 'react-router-dom'
 
 class BookByID extends Component {
     constructor(props){
         super(props)
         this.state={
             book: {},
-            editedBook: {}
+            editedBook: {},
+            redirect: false
         }
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -91,6 +93,22 @@ class BookByID extends Component {
         return guestList;
     }
 
+    deleteBook(book){
+        let answer = prompt(`Are you sure you want to delete ${book.title}? Y/N`)
+        if(answer=="y"||answer=="Y"){
+            fetch(`http://localhost:3000/books/${book.id}`,{
+                method: 'DELETE'
+            })
+            this.setState({redirect: true})
+        }
+    }
+
+    renderRedirect = () => {
+        if (this.state.redirect) {
+          return <Redirect to='/books' />
+        }
+      }
+
     render(){
         const book = this.state.book
         return(
@@ -121,6 +139,8 @@ class BookByID extends Component {
                     <input type='text' value={this.state.editedBook.isbn} onChange={this.handleChange} id='isbn'/>
                     <input type='submit'/>
                 </form>
+                <button onClick={()=>{this.deleteBook(book)}}>Delete This Book</button>
+                {this.renderRedirect}
             </>
         )
     }

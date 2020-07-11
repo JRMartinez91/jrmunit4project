@@ -33,6 +33,8 @@ class CreateGuest extends Component{
 
     render(){
         return(
+            <>
+            <h1>Add a New Guest</h1>
             <form onSubmit={this.handleSubmit}>
                 <label htmlFor='name'>Name</label>
                 <input type='text' value={this.state.name} onChange={this.handleChange} id='name'/>
@@ -40,6 +42,7 @@ class CreateGuest extends Component{
                 <input type='text' value={this.state.address} onChange={this.handleChange} id='address'/>
                 <input type='submit'/>
             </form>
+            </>
         )
     }
 }

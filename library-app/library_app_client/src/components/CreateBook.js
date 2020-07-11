@@ -43,6 +43,8 @@ class CreateBook extends Component{
 
     render(){
         return(
+            <>
+            <h1>Add a New Book</h1>
             <form onSubmit={this.handleSubmit}>
                 <label htmlFor='title'>Title</label>
                 <input type='text' value={this.state.title} onChange={this.handleChange} id='title'/>
@@ -56,6 +58,7 @@ class CreateBook extends Component{
                 <input type='text' value={this.state.isbn} onChange={this.handleChange} id='isbn'/>
                 <input type='submit'/>
             </form>
+            </>
         )
     }
 }

@@ -17,16 +17,16 @@ class App extends Component {
     return(
       <BrowserRouter>
       <div className="modal-bg"/>
-      <h1>Hello World</h1>
-      <h2>New Guest</h2>
-      <CreateGuest/>
-      <h2>New Book</h2>
-      <CreateBook/>
-      {/* <div className="bigbox">
-        <BookList/>
-        <GuestList/>
-      </div> */}
+      <h1>Rails React Library</h1>
+      <nav>
+        <a href="/newbook">Add New Book</a>
+        <a href="/newguest">Add New Guest</a>
+        <a href="/books">Book Index</a>
+        <a href="/guests">Guests Index</a>
+      </nav>
       <Switch>
+        <Route path="/newbook" component={CreateBook}/>
+        <Route path="/newguest" component={CreateGuest}/>
         <Route path="/books/:id" component={BookByID}/>
         <Route path="/books" component={BookList}/>
         <Route path="/guests/:id" component={GuestByID}/>
