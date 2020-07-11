@@ -76,7 +76,7 @@ class GuestByID extends Component {
         if(myBooks){
             if(myBooks.length>0){
             myBooks.map(book=>{
-                bookList.push(<li>{book.title}</li>)
+                bookList.push(<li><a href={"/books/"+book.id}>{book.title}</a></li>)
                 bookList.push(this.getCheckoutFromBook(book.id))
             })
             } else {

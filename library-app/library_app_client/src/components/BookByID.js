@@ -9,6 +9,7 @@ class BookByID extends Component {
         }
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.parseGuests = this.parseGuests.bind(this);
     }
 
     getBook(){
@@ -48,6 +49,48 @@ class BookByID extends Component {
         this.getBook();
         console.log(this.props.match.params);
     }
+
+    matchID(checkout,id){
+        return id == checkout.guest_id
+    }
+    
+    getCheckoutFromGuest(guest_id){
+        const myCheckouts = this.state.book.checkouts
+        let datelist = []
+        if(myCheckouts){
+            myCheckouts.map(element=>{
+                if(element.guest_id = guest_id){
+                    datelist = (
+                        <li><ul>
+                        <li>Checked Out:{element.start}</li>
+                        <li>Due: {element.due}</li>
+                        <li>Returned: {element.returned}</li>
+                        </ul></li>
+                    )
+                }
+            })
+            return datelist;
+        }
+    }
+
+    parseGuests(){
+        let guestList =[]
+        const myGuests = this.state.book.guests
+        if(myGuests){
+            if(myGuests.length>0){
+            myGuests.map(guest=>{
+                guestList.push(<li><a href={"/guests/"+guest.id}>{guest.name}</a></li>)
+                guestList.push(this.getCheckoutFromGuest(guest.id))
+            })
+            } else {
+                guestList = <li>No guest has recently checked out this book!</li>
+            }
+        } else {
+            guestList = <li>Loading guest list...</li>
+        }
+        return guestList;
+    }
+
     render(){
         const book = this.state.book
         return(
@@ -60,6 +103,10 @@ class BookByID extends Component {
                     <p>Published on {book.pubdate}</p>
                     <p>ISBN: {book.isbn}</p>
                 </div>
+                <h3>Checkout History:</h3>
+                <ul>
+                {this.parseGuests()}
+                </ul>
                 <h2>Edit Book Data:</h2>
                     <form onSubmit={this.handleSubmit}>
                     <label htmlFor='title'>Title</label>

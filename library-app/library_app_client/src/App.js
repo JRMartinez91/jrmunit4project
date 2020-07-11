@@ -1,12 +1,16 @@
+//React framework
 import React, {Component} from 'react';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+//Components
 import GuestList from './components/GuestList'
 import BookList from './components/BookList'
 import CreateGuest from './components/CreateGuest'
 import CreateBook from './components/CreateBook'
 import BookByID from './components/BookByID';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import './App.css';
 import GuestByID from './components/GuestByID';
+import NewCheckout from './components/NewCheckout';
+//Styling
+import './App.css';
 
 class App extends Component {
   render(){
@@ -27,6 +31,7 @@ class App extends Component {
         <Route path="/books" component={BookList}/>
         <Route path="/guests/:id" component={GuestByID}/>
         <Route path="/guests" component={GuestList}/>
+        <Route path="/newcheckout/:id" component={NewCheckout}/>
       </Switch>
       </BrowserRouter>
     )
