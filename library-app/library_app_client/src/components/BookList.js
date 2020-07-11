@@ -16,6 +16,16 @@ class BookList extends Component{
         this.getBooks();
     }
 
+    deleteBook(book){
+        let answer = prompt(`Are you sure you want to delete ${book.title}? Y/N`)
+        if(answer=="y"||answer=="Y"){
+            fetch(`http://localhost:3000/books/${book.id}`,{
+                method: 'DELETE'
+            }).then(response => {return response.json()})
+            .then(res => console.log(res))
+        }
+    }
+
 
     render(){
         return(
@@ -30,13 +40,8 @@ class BookList extends Component{
                                 <p>Genre: {book.genre}</p>
                                 <p>Published on {book.pubdate}</p>
                                 <p>ISBN: {book.isbn}</p>
-                            </div>
-                            <div className="bookmodal">
-                                <h1>{book.title}</h1>
-                                <h2>By {book.author}</h2>
-                                <p>Genre: {book.genre}</p>
-                                <p>Published on {book.pubdate}</p>
-                                <p>ISBN: {book.isbn}</p>
+                                <a href={"/books/"+book.id}>View/Edit</a>
+                                <button onClick={()=>{this.deleteBook(book)}}>Delete</button>
                             </div>
                         </div>
                     )
